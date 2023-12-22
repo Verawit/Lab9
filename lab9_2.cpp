@@ -1,24 +1,61 @@
 #include<iostream>
+#include<iomanip> //For using setw(), setprecision(), ...
 using namespace std;
 
-//Write the function printO() here
-
-int main(){
-	
-	printO(2,2);
-	cout << "\n";
-	
-	printO(3,5);
-	cout << "\n";	
-	
-	printO(5,3);
-	cout << "\n";	
-	
-	printO(0,3);
-	cout << "\n";	
-	
-	printO(7,-1);
-	cout << "\n";	
-	
-	return 0;
+void printO(int N,int M)
+{
+    if(N <= 0 || M <= 0)
+    {
+    cout <<"Invalid input";
+    }
+    else
+    {
+        for(int i = 1 ; i<= N ; i++)
+        {
+            for(int j = 1 ; j <= M; j++)
+            {
+            cout<<"O";
+            }
+        cout << "\n" ;
+        }
+    }
+}
+int main(){int i = 1;
+    double pre,rate,itr,pay,pos,Total;
+    cout << "Enter initial loan: ";
+    cin >> pre;
+    cout << "Enter interest rate per year (%): ";
+    cin >> rate;
+    cout << "Enter amount you can pay per year: ";
+    cin >> pay;
+    
+    //use 'setw' to set width of table and 'left' to set left-alignment
+    //you can change input argument of 'setw()' to see the effect
+    //Try to change from 'left' to 'right' and see the effect
+    cout << setw(13) << left << "EndOfYear#"; 
+    cout << setw(13) << left << "PrevBalance"; 
+    cout << setw(13) << left << "Interest"; 
+    cout << setw(13) << left << "Total";
+    cout << setw(13) << left << "Payment";
+    cout << setw(13) << left << "NewBalance";
+    cout << "\n";
+    
+    //use 'fixed' and 'setprecision' to fix the number of decimal digits for displaying
+    //you can change input argument of 'setprecision()' to see the effect
+    while(pos > 0){
+    cout << fixed << setprecision(2); 
+    cout << setw(13) << left << i++; 
+    cout << setw(13) << left << pre;
+    itr = pre*rate/100;
+    cout << setw(13) << left << itr;
+    Total = pre + itr;
+    cout << setw(13) << left << Total;
+    if(pay>Total) pay = Total;
+    cout << setw(13) << left << pay;
+        pos = Total-pay;
+    cout << setw(13) << left << pos;
+        pre = pos;
+    cout << "\n";
+    }
+    return 0;
 }
